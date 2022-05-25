@@ -29,6 +29,7 @@ def findEncodings(images):
 #   with open('Attendance.csv','r+') as f:
 #   myDataList = f.readlines()
 #   print(myDataList)
+#nameList = []
 encodeListknown = findEncodings(images)
 print('Encoding complete')
 #capturing image on device camera
