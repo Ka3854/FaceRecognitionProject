@@ -1,2 +1,0 @@
-# FaceRecognitionProject
- face recognize, attendance
