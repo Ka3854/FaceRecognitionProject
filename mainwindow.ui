@@ -24,60 +24,25 @@
     <normaloff>icon.png</normaloff>icon.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: rgb(229, 229, 229);</string>
   </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>110</y>
-     <width>501</width>
-     <height>80</height>
+     <x>-10</x>
+     <y>-1</y>
+     <width>661</width>
+     <height>191</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLabel" name="label">
-      <property name="styleSheet">
-       <string notr="true">font: 75 14pt &quot;Palatino Linotype&quot;;
-border-top-color: rgb(6, 6, 6);
-background-color: rgb(216, 217, 249);
-</string>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;TrackAAttendance&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QLabel" name="filelabel">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>200</y>
-     <width>499</width>
-     <height>78</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Calibri</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string> Attendance Tracker App</string>
-   </property>
+   <layout class="QVBoxLayout" name="verticalLayout"/>
   </widget>
   <widget class="QPushButton" name="runButton">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>310</y>
-     <width>499</width>
+     <x>180</x>
+     <y>290</y>
+     <width>271</width>
      <height>34</height>
     </rect>
    </property>
@@ -88,10 +53,30 @@ background-color: rgb(216, 217, 249);
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-color: rgb(255, 0, 0);</string>
+    <string notr="true">border-color: rgb(227, 0, 0);
+background-color: rgb(215, 220, 255);</string>
    </property>
    <property name="text">
     <string>Start</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>-2</y>
+     <width>659</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 14pt &quot;Palatino Linotype&quot;;
+border-color: rgb(16, 16, 16);
+background-color: rgb(216, 217, 249);
+</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;TrackAAttendance&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
