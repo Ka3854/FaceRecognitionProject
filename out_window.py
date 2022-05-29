@@ -1,3 +1,4 @@
+import time
 
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.uic import loadUi
@@ -15,7 +16,7 @@ class Ui_OutputDialog(QDialog):
         super(Ui_OutputDialog, self).__init__()
         loadUi("./outputwindow.ui", self)
 
-        #Update time
+        # displaying time on output window ui
         now = QDate.currentDate()
         current_date = now.toString('ddd dd MMMM yyyy')
         current_time = datetime.datetime.now().strftime("%I:%M %p")
@@ -82,7 +83,8 @@ class Ui_OutputDialog(QDialog):
                                                                QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
                             if buttonReply == QMessageBox.Yes:
 
-                                date_time_string = datetime.datetime.now().strftime("%y/%m/%d %H:%M:%S")
+
+                                date_time_string = datetime.datetime.now().strftime("%d/%m/%y %H:%M:%S")
                                 f.writelines(f'\n{name},{date_time_string},Clock In')
                                 self.ClockInButton.setChecked(False)
 
@@ -94,7 +96,6 @@ class Ui_OutputDialog(QDialog):
                                 #self.CalculateElapse(name)
                                 #print('Yes clicked and detected')
                                 self.Time1 = datetime.datetime.now()
-                                #print(self.Time1)
                                 self.ClockInButton.setEnabled(True)
                             else:
                                 print('Not clicked.')
@@ -106,23 +107,25 @@ class Ui_OutputDialog(QDialog):
                             buttonReply = QMessageBox.question(self, 'Cheers ' + name, 'Are you Clocking Out?',
                                                               QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
                             if buttonReply == QMessageBox.Yes:
-                                date_time_string = datetime.datetime.now().strftime("%y/%m/%d %H:%M:%S")
-                                f.writelines(f'\n{name},{date_time_string},Clock Out')
-                                self.ClockOutButton.setChecked(False)
 
-                                self.NameLabel.setText(name)
-                                self.StatusLabel.setText('Clocked Out')
-                                self.Time2 = datetime.datetime.now()
+                              date_time_string = datetime.datetime.now().strftime("%d/%m/%y %H:%M:%S")
+                              #f.writelines(f'\n{name},{date_time_string},Clock Out')
+                              self.ClockOutButton.setChecked(False)
+
+                              self.NameLabel.setText(name)
+                              self.StatusLabel.setText('Clocked Out')
+                              self.Time2 = datetime.datetime.now()
                                 #print(self.Time2)
 
-                                self.ElapseList(name)
-                                self.TimeList2.append(datetime.datetime.now())
-                                CheckInTime = self.TimeList1[-1]
-                                CheckOutTime = self.TimeList2[-1]
-                                self.ElapseHours = (CheckOutTime - CheckInTime)
-                                self.MinLabel.setText("{:.0f}".format(abs(self.ElapseHours.total_seconds() / 60)%60) + 'm')
-                                self.HoursLabel.setText("{:.0f}".format(abs(self.ElapseHours.total_seconds() / 60**2)) + 'h')
-                                self.ClockOutButton.setEnabled(True)
+                              self.ElapseList(name)
+                              self.TimeList2.append(datetime.datetime.now())
+                              CheckInTime = self.TimeList1[-1]
+                              CheckOutTime = self.TimeList2[-1]
+                              self.ElapseHours = (CheckOutTime - CheckInTime)
+                              self.MinLabel.setText("{:.0f}".format(abs(self.ElapseHours.total_seconds() / 60)%60)+'m')
+                              self.HoursLabel.setText("{:.0f}".format(abs(self.ElapseHours.total_seconds() / 60**2))+'h')
+                              f.writelines(f'\n{name},{date_time_string},Clock Out,{self.ElapseHours},total time')
+                              self.ClockOutButton.setEnabled(True)
                             else:
                                 print('Not clicked.')
                                 self.ClockOutButton.setEnabled(True)
@@ -171,12 +174,14 @@ class Ui_OutputDialog(QDialog):
                         if field == 'Clock In':
                             if row[0] == name:
                                 #print(f'\t ROW 0 {row[0]}  ROW 1 {row[1]} ROW2 {row[2]}.')
-                                Time1 = (datetime.datetime.strptime(row[1], '%y/%m/%d %H:%M:%S'))
+                                #print(datetime.datetime.strptime(row[2]))
+                                Time1 = (datetime.datetime.strptime(row[1], '%d/%m/%y %H:%M:%S'))
                                 self.TimeList1.append(Time1)
                         if field == 'Clock Out':
                             if row[0] == name:
                                 #print(f'\t ROW 0 {row[0]}  ROW 1 {row[1]} ROW2 {row[2]}.')
-                                Time2 = (datetime.datetime.strptime(row[1], '%y/%m/%d %H:%M:%S'))
+                                #print(datetime.datetime.strptime(row[2]))
+                                Time2 = (datetime.datetime.strptime(row[1], '%d/%m/%y %H:%M:%S'))
                                 self.TimeList2.append(Time2)
                                 #print(Time2)
 
